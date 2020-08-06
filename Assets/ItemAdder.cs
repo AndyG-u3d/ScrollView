@@ -35,15 +35,18 @@ public class ItemAdder : MonoBehaviour
             RectTransform xform = xform = ScrollViewContentContainer.GetComponent<RectTransform>();
             if (xform != null)
             {
+                float itemHeight = GetItemHeight(newItem);
                 if (NegativeYScale)
                 {
-                    xform.offsetMin -= new Vector2(0.0f, GetItemHeight(newItem) * 2.0f);
-                    xform.offsetMax -= new Vector2(0.0f, GetItemHeight(newItem));
-                    //xform.offsetMax += new Vector2(0.0f, GetItemHeight(newItem));    
+                    // For reversed lists, adding items can cause a change/jump in item positions
+                    // We must also update the current scroll position for the visual to appear correctly.
+                    // NB - this was not given too much thought - there may be a better approach.
+                    xform.offsetMin -= new Vector2(0.0f, itemHeight * 2.0f);
+                    xform.offsetMax -= new Vector2(0.0f, itemHeight);
                 }
                 else
                 {
-                    xform.offsetMax += new Vector2(0.0f, GetItemHeight(newItem));    
+                    xform.offsetMax += new Vector2(0.0f, itemHeight);    
                 }
                 
             }
