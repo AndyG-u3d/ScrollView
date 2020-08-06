@@ -28,7 +28,7 @@ public class ItemAdder : MonoBehaviour
         m_itemIndex = (m_itemIndex + 1) % Items.Length;
 
         GameObject newItem = Instantiate(Items[m_itemIndex], ScrollViewContentContainer.transform, false);
-        newItem.transform.localScale = new Vector3(1.0f,NegativeYScale ? -1.0f : 1.0f, 1.0f);
+        newItem.transform.localScale = new Vector3(1.0f, NegativeYScale ? -1.0f : 1.0f, 1.0f);
         
         if (UseRectTransformToggle.isOn)
         {
@@ -78,8 +78,8 @@ public class ItemAdder : MonoBehaviour
             }
         }
         
-        // move item to end of hierarchy
-        newItem.transform.SetAsLastSibling();
+        // move item to end of hierarchy. not really needed here.
+        // newItem.transform.SetAsLastSibling();
     }
     
     protected float GetItemHeight(GameObject item)
